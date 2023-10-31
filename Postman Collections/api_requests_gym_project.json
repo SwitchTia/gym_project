@@ -1,0 +1,224 @@
+{
+	"info": {
+		"_postman_id": "b6ba8989-e79d-4904-babb-4a801387bb87",
+		"name": "gym_project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CustomerRequests",
+			"item": [
+				{
+					"name": "RegisterAdmin",
+					"id": "96e8dc08-977c-4ffd-af13-07b89ef765e2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\": \"Marco\",\n    \"lastname\": \"Neri\",\n    \"email\": \"marco.neri@gmail.com\",\n    \"password\": \"1234\"\n     \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/users/registerAdmin"
+					},
+					"response": []
+				},
+				{
+					"name": "RegisterInstructor",
+					"id": "cf4db643-eaf7-4f88-8728-a788b27dfb9f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\": \"Maria\",\n    \"lastname\": \"Verdi\",\n    \"email\": \"maria.verdi@gmail.com\",\n    \"password\": \"1234\"\n     \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/users/registerInstructor"
+					},
+					"response": []
+				},
+				{
+					"name": "RegisterCustomer",
+					"id": "db6bd8c7-cef4-482a-a6bb-7ca04d556d94",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\": \"Maria\",\n    \"lastname\": \"Rossi\",\n    \"email\": \"maria.rossi@gmail.com\",\n    \"password\": \"1234\"\n     \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/users/registerWorker"
+					},
+					"response": []
+				},
+				{
+					"name": "AuthenticateAdmin",
+					"id": "77edccb6-01af-4473-a22e-b857be9a69e4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"email\": \"marco.neri@gmail.com\",\n\n \"password\": \"1234\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/users/authenticate"
+					},
+					"response": []
+				},
+				{
+					"name": "AuthenticateInstructor",
+					"id": "7b89e151-a6e4-4e18-a8cb-25d87100a7a3",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n    \"email\": \"maria.verdi@gmail.com\",\n\n    \"password\": \"1234\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/users/authenticate"
+					},
+					"response": []
+				},
+				{
+					"name": "AuthenticateCustomer",
+					"id": "8b7d20b1-6c03-48f8-9fb4-2b174c22aae8",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n    \"email\": \"maria.rossi@gmail.com\",\n\n    \"password\": \"1234\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/users/authenticate"
+					},
+					"response": []
+				},
+				{
+					"name": "UpgradeRole",
+					"id": "f9037b4f-d76b-438a-94f9-43e9da1c1f35",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5ODMyMjE1NSwiZXhwIjoxNjk4MzM2NTU1fQ.4mFumRbTUhpHkgvACro5NT3o8McfUJW7O7pWmrYLFMM"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/upgradeRole?email=maria.verdi@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"upgradeRole"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "maria.verdi@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DowngradeRole Copy",
+					"id": "7d14f243-dddd-4ce2-8fe5-67e683650e25",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5ODMyMjE1NSwiZXhwIjoxNjk4MzM2NTU1fQ.4mFumRbTUhpHkgvACro5NT3o8McfUJW7O7pWmrYLFMM"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/downgradeRole?email=maria.verdi@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"downgradeRole"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "maria.verdi@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "a1339671-baef-4322-b84f-3ddad923a2a0"
+		},
+		{
+			"name": "CourseRequests",
+			"item": [],
+			"id": "6744736e-66ec-4af5-8fc9-24d4b175a77e"
+		}
+	]
+}
