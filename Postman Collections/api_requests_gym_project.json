@@ -26,7 +26,7 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/users/registerAdmin"
+						"url": "http://localhost:8080/customer/registerAdmin"
 					},
 					"response": []
 				},
@@ -48,7 +48,7 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/users/registerInstructor"
+						"url": "http://localhost:8080/customer/registerInstructor"
 					},
 					"response": []
 				},
@@ -70,7 +70,7 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/users/registerWorker"
+						"url": "http://localhost:8080/customer/registerWorker"
 					},
 					"response": []
 				},
@@ -92,7 +92,7 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/users/authenticate"
+						"url": "http://localhost:8080/customer/authenticate"
 					},
 					"response": []
 				},
@@ -114,7 +114,7 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/users/authenticate"
+						"url": "http://localhost:8080/customer/authenticate"
 					},
 					"response": []
 				},
@@ -136,7 +136,7 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/users/authenticate"
+						"url": "http://localhost:8080/customer/authenticate"
 					},
 					"response": []
 				},
@@ -156,14 +156,14 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/users/upgradeRole?email=maria.verdi@gmail.com",
+							"raw": "http://localhost:8080/customer/upgradeRole?email=maria.verdi@gmail.com",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"users",
+								"customer",
 								"upgradeRole"
 							],
 							"query": [
@@ -192,14 +192,14 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/users/downgradeRole?email=maria.verdi@gmail.com",
+							"raw": "http://localhost:8080/customer/downgradeRole?email=maria.verdi@gmail.com",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"users",
+								"customer",
 								"downgradeRole"
 							],
 							"query": [
