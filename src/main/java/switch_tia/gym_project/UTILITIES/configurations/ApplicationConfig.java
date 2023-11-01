@@ -11,17 +11,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import lombok.RequiredArgsConstructor;
-import switch_tia.gym_project.repositories.CustomerRepository;
+import switch_tia.gym_project.repositories.UserRepository;
 
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfig {
     
-    private final CustomerRepository cr;
+    private final UserRepository ur;
 
     @Bean
     public UserDetailsService userDetailsService () {
-        return username -> cr.findByEmail(username);
+        return username -> ur.findByEmail(username);
     }
 
     @Bean

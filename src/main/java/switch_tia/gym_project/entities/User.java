@@ -25,12 +25,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table (name = "customer")
-public class Customer implements UserDetails{
+@Table (name = "user")
+public class User implements UserDetails{
     
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    @Column (name = "customer_id", nullable = false)
+    @Column (name = "userId", nullable = false)
     private int customerId;
 
     @Column (name = "firstname")
