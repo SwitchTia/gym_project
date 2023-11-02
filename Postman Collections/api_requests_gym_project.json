@@ -211,6 +211,191 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "GetCustomer",
+					"id": "1fde672e-92c4-48d0-bd31-c377ad5a52ba",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5ODMyOTU3OCwiZXhwIjoxNjk4MzQzOTc4fQ.Fa_bUPCKVJq_kpNmST5uxR1um2taCWdQ9K3YdwZ3ljg"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customer/getCustomer?email=maria.rossi@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer",
+								"getCustomer"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "maria.rossi@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllCustomer",
+					"id": "83114c33-a19a-4591-84c7-7739cf62914f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5ODMyOTU3OCwiZXhwIjoxNjk4MzQzOTc4fQ.Fa_bUPCKVJq_kpNmST5uxR1um2taCWdQ9K3YdwZ3ljg"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/customer/getAllCustomer"
+					},
+					"response": []
+				},
+				{
+					"name": "ModifyEmail",
+					"id": "6af8b4f2-23a4-4163-b5ef-40cd632c8615",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5ODMxNDcyMiwiZXhwIjoxNjk4MzI5MTIyfQ.rMRrZk8IS-10cMxFR9omcNYEYICnXWnNBeJQg9dc7uA"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/cutomer/modifyEmail?email=maria.rossi@gmail.com&newEmail=marta.rossi@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cutomer",
+								"modifyEmail"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "maria.rossi@gmail.com"
+								},
+								{
+									"key": "newEmail",
+									"value": "marta.rossi@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ModifyPassword",
+					"id": "8bbddd58-bdc3-4606-94f3-7108d168091e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJpYS5yb3NzaUBnbWFpbC5jb20iLCJpYXQiOjE2OTgzMjIxNzYsImV4cCI6MTY5ODMzNjU3Nn0.m0wRC_7qzyPwT8TaYWgqqrTDt2RDnzNk7UzUbaBmi5w"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customer/modifyPassword?password=1234&newPassword=12345",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer",
+								"modifyPassword"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "maria.rossi@gmail.com",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "1234"
+								},
+								{
+									"key": "newPassword",
+									"value": "12345"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteUser Copy",
+					"id": "c947b6b9-784b-4a0a-8cfc-8642f95f6980",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5ODMyMjE1NSwiZXhwIjoxNjk4MzM2NTU1fQ.4mFumRbTUhpHkgvACro5NT3o8McfUJW7O7pWmrYLFMM"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/deleteUser?email=maria.rossi@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"deleteUser"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "maria.rossi@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"id": "a1339671-baef-4322-b84f-3ddad923a2a0"
