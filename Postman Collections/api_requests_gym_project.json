@@ -70,7 +70,7 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/customer/registerWorker"
+						"url": "http://localhost:8080/customer/registerCustomer"
 					},
 					"response": []
 				},
@@ -137,78 +137,6 @@
 							}
 						},
 						"url": "http://localhost:8080/customer/authenticate"
-					},
-					"response": []
-				},
-				{
-					"name": "UpgradeRole",
-					"id": "f9037b4f-d76b-438a-94f9-43e9da1c1f35",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5ODMyMjE1NSwiZXhwIjoxNjk4MzM2NTU1fQ.4mFumRbTUhpHkgvACro5NT3o8McfUJW7O7pWmrYLFMM"
-							}
-						},
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/customer/upgradeRole?email=maria.verdi@gmail.com",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"customer",
-								"upgradeRole"
-							],
-							"query": [
-								{
-									"key": "email",
-									"value": "maria.verdi@gmail.com"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DowngradeRole Copy",
-					"id": "7d14f243-dddd-4ce2-8fe5-67e683650e25",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5ODMyMjE1NSwiZXhwIjoxNjk4MzM2NTU1fQ.4mFumRbTUhpHkgvACro5NT3o8McfUJW7O7pWmrYLFMM"
-							}
-						},
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/customer/downgradeRole?email=maria.verdi@gmail.com",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"customer",
-								"downgradeRole"
-							],
-							"query": [
-								{
-									"key": "email",
-									"value": "maria.verdi@gmail.com"
-								}
-							]
-						}
 					},
 					"response": []
 				},
@@ -362,7 +290,79 @@
 					"response": []
 				},
 				{
-					"name": "DeleteUser Copy",
+					"name": "UpgradeRole",
+					"id": "f9037b4f-d76b-438a-94f9-43e9da1c1f35",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5ODMyMjE1NSwiZXhwIjoxNjk4MzM2NTU1fQ.4mFumRbTUhpHkgvACro5NT3o8McfUJW7O7pWmrYLFMM"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customer/upgradeRole?email=maria.verdi@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer",
+								"upgradeRole"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "maria.verdi@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DowngradeRole",
+					"id": "7d14f243-dddd-4ce2-8fe5-67e683650e25",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5ODMyMjE1NSwiZXhwIjoxNjk4MzM2NTU1fQ.4mFumRbTUhpHkgvACro5NT3o8McfUJW7O7pWmrYLFMM"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customer/downgradeRole?email=maria.verdi@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer",
+								"downgradeRole"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "maria.verdi@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCustomer",
 					"id": "c947b6b9-784b-4a0a-8cfc-8642f95f6980",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -377,15 +377,15 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/users/deleteUser?email=maria.rossi@gmail.com",
+							"raw": "http://localhost:8080/customer/deleteCustomer?email=maria.rossi@gmail.com",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"users",
-								"deleteUser"
+								"customer",
+								"deleteCustomer"
 							],
 							"query": [
 								{
