@@ -26,7 +26,7 @@
 								}
 							}
 						},
-						"url": "http://localhost:8080/user/registerAdmin"
+						"url": "http://localhost:8080/customer/registerAdmin"
 					},
 					"response": []
 				},
