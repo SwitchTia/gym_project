@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.servlet.http.HttpServletRequest;
 import switch_tia.gym_project.UTILITIES.configurations.AuthenticationRequest;
 import switch_tia.gym_project.UTILITIES.configurations.RegisterRequest;
 import switch_tia.gym_project.repositories.CustomerRepository;
@@ -89,6 +92,57 @@ public class CustomerController {
         } catch (RuntimeException e) {
             String ex = e.getClass().getSimpleName();
             return new ResponseEntity(ex, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping ("/getAllCustomer")
+    @PreAuthorize ("hasAnyAuthority('ADMIN','INSTRUCTOR')")
+    public ResponseEntity getAllUsers () {
+        return new ResponseEntity (cr.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping ("/getCustomer")
+    @PreAuthorize ("hasAnyAuthority('ADMIN','INSTRUCTOR')")
+    public ResponseEntity getUser (@RequestParam ("email") String email) {
+        try {
+            return new ResponseEntity (cs.getCustomer (email), HttpStatus.OK);
+        } catch (RuntimeException e) {
+            String ex = e.getClass().getSimpleName();
+            return new ResponseEntity (ex, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PutMapping ("/modifyEmail")
+    @PreAuthorize ("hasAnyAuthority('ADMIN','INSTRUCTOR')")
+    public ResponseEntity modifyEmail (@RequestParam ("email") String email, @RequestParam ("newEmail") String newEmail){
+        try {
+            return new ResponseEntity (cs.modifyEmail (email, newEmail), HttpStatus.OK);
+        } catch (RuntimeException e) {
+            String ex = e.getClass().getSimpleName();
+             return new ResponseEntity (ex, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PutMapping ("/modifyPassword")
+    @PreAuthorize ("hasAuthority('CUSTOMER')")
+    public ResponseEntity modifyPassword (HttpServletRequest servletRequest, @RequestParam ("password") String password, @RequestParam ("newPassword") String newPassword){
+        try {
+            String email =jwtService.extractEmailFromRequest(servletRequest);
+            return new ResponseEntity (cs.modifyPassword (email, password, newPassword), HttpStatus.OK);
+        } catch (RuntimeException e) {
+            String ex = e.getClass().getSimpleName();
+             return new ResponseEntity (ex, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping ("/deleteCustomer")
+    @PreAuthorize ("hasAuthority('ADMIN')")
+    public ResponseEntity deleteUser (@RequestParam ("email") String email) {
+        try {
+            return new ResponseEntity (cs.deleteCustomer(email), HttpStatus.OK);
+        } catch (RuntimeException e) {
+            String ex = e.getClass().getSimpleName();
+            return new ResponseEntity (ex, HttpStatus.BAD_REQUEST);
         }
     }
 

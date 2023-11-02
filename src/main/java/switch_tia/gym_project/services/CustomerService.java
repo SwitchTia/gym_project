@@ -13,7 +13,7 @@ import switch_tia.gym_project.UTILITIES.configurations.RegisterRequest;
 import switch_tia.gym_project.UTILITIES.exceptions.CustomerAlreadyExistsException;
 import switch_tia.gym_project.UTILITIES.exceptions.CustomerDoesNotExistException;
 import switch_tia.gym_project.UTILITIES.exceptions.CustomerHasAlreadyAdminRoleException;
-import switch_tia.gym_project.UTILITIES.exceptions.IncorectDataException;
+import switch_tia.gym_project.UTILITIES.exceptions.IncorrectDataException;
 import switch_tia.gym_project.entities.Customer;
 import switch_tia.gym_project.entities.Role;
 import switch_tia.gym_project.repositories.CustomerRepository;
@@ -98,7 +98,7 @@ public class CustomerService {
     public Customer upgradeRole (String email) throws RuntimeException {
         Customer c = cr.findByEmail(email);
         if (!isValidEmail(email)){
-            throw new IncorectDataException ();
+            throw new IncorrectDataException ();
         }
         if (c == null) {
             throw new CustomerDoesNotExistException ();
@@ -114,7 +114,7 @@ public class CustomerService {
     public Customer downgradeRole (String email) throws RuntimeException {
         Customer c = cr.findByEmail(email);
         if (!isValidEmail(email)){
-            throw new IncorectDataException ();
+            throw new IncorrectDataException ();
         }
         if (c == null) {
             throw new CustomerDoesNotExistException ();
@@ -126,4 +126,49 @@ public class CustomerService {
         cr.save(c);
         return c;
     } 
+
+    public Customer getCustomer (String email) throws RuntimeException {
+        Customer c = cr.findByEmail(email);
+        if (!isValidEmail(email)){
+            throw new IncorrectDataException ();
+        }
+        return (c);
+    }
+
+    public Customer modifyEmail (String email, String newEmail){
+        Customer c = cr.findByEmail(email);
+        if (!isValidEmail(email)){
+            throw new IncorrectDataException ();
+        }
+        if (c == null){
+            throw new CustomerDoesNotExistException();
+        }
+        c.setEmail(newEmail);
+        cr.save (c);
+        return c;
+    }
+
+    public Customer modifyPassword (String email, String password, String newPassword){
+        Customer c = cr.findByEmail(email);
+        if (!isValidEmail(email)){
+            throw new IncorrectDataException ();
+        }
+        if (c == null){
+            throw new CustomerDoesNotExistException();
+        }
+        c.setPassword(newPassword);
+        cr.save (c);
+        return c;
+    }
+
+    public String deleteCustomer (String email) throws RuntimeException{
+        Customer c = cr.findByEmail(email);
+        if (!isValidEmail(email)){
+            throw new IncorrectDataException ();
+        }
+        cr.delete (c);
+        String x = "The customer " + email + " has been deleted";
+        return x;
+    }
+
 }
