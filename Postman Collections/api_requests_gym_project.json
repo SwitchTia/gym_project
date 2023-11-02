@@ -150,7 +150,7 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5ODMyOTU3OCwiZXhwIjoxNjk4MzQzOTc4fQ.Fa_bUPCKVJq_kpNmST5uxR1um2taCWdQ9K3YdwZ3ljg"
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5ODk0NjA2MCwiZXhwIjoxNjk4OTYwNDYwfQ.nKEnDPzs4YfJBlnVexPV9-2_m1yJjddUEvfOBANQWhE"
 							}
 						},
 						"method": "GET",
@@ -186,7 +186,7 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5ODMyOTU3OCwiZXhwIjoxNjk4MzQzOTc4fQ.Fa_bUPCKVJq_kpNmST5uxR1um2taCWdQ9K3YdwZ3ljg"
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5ODk0NjA2MCwiZXhwIjoxNjk4OTYwNDYwfQ.nKEnDPzs4YfJBlnVexPV9-2_m1yJjddUEvfOBANQWhE"
 							}
 						},
 						"method": "GET",
@@ -214,26 +214,26 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5ODMxNDcyMiwiZXhwIjoxNjk4MzI5MTIyfQ.rMRrZk8IS-10cMxFR9omcNYEYICnXWnNBeJQg9dc7uA"
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5ODk0NjY1OCwiZXhwIjoxNjk4OTYxMDU4fQ.EZSN1vfXtcC_aW3Wz9--3Rg7IwzjRyE7TXIxgF2vndY"
 							}
 						},
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/cutomer/modifyEmail?email=maria.rossi@gmail.com&newEmail=marta.rossi@gmail.com",
+							"raw": "http://localhost:8080/customer/modifyEmail?email=maria.verdi@gmail.com&newEmail=marta.rossi@gmail.com",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"cutomer",
+								"customer",
 								"modifyEmail"
 							],
 							"query": [
 								{
 									"key": "email",
-									"value": "maria.rossi@gmail.com"
+									"value": "maria.verdi@gmail.com"
 								},
 								{
 									"key": "newEmail",
@@ -254,7 +254,7 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJpYS5yb3NzaUBnbWFpbC5jb20iLCJpYXQiOjE2OTgzMjIxNzYsImV4cCI6MTY5ODMzNjU3Nn0.m0wRC_7qzyPwT8TaYWgqqrTDt2RDnzNk7UzUbaBmi5w"
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJpYS5yb3NzaUBnbWFpbC5jb20iLCJpYXQiOjE2OTg5NDY2NzMsImV4cCI6MTY5ODk2MTA3M30.JiZOnFXVfwAdBwx07eYYD6USLkJ7_9VgXnarO-F0p_E"
 							}
 						},
 						"method": "PUT",
@@ -299,7 +299,7 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5ODMyMjE1NSwiZXhwIjoxNjk4MzM2NTU1fQ.4mFumRbTUhpHkgvACro5NT3o8McfUJW7O7pWmrYLFMM"
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5ODk0NjA2MCwiZXhwIjoxNjk4OTYwNDYwfQ.nKEnDPzs4YfJBlnVexPV9-2_m1yJjddUEvfOBANQWhE"
 							}
 						},
 						"method": "PUT",
@@ -335,7 +335,7 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5ODMyMjE1NSwiZXhwIjoxNjk4MzM2NTU1fQ.4mFumRbTUhpHkgvACro5NT3o8McfUJW7O7pWmrYLFMM"
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5ODk0NjA2MCwiZXhwIjoxNjk4OTYwNDYwfQ.nKEnDPzs4YfJBlnVexPV9-2_m1yJjddUEvfOBANQWhE"
 							}
 						},
 						"method": "PUT",
@@ -371,7 +371,7 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5ODMyMjE1NSwiZXhwIjoxNjk4MzM2NTU1fQ.4mFumRbTUhpHkgvACro5NT3o8McfUJW7O7pWmrYLFMM"
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5ODk0NjA2MCwiZXhwIjoxNjk4OTYwNDYwfQ.nKEnDPzs4YfJBlnVexPV9-2_m1yJjddUEvfOBANQWhE"
 							}
 						},
 						"method": "DELETE",
