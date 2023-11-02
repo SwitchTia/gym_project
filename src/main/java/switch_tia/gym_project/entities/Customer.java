@@ -31,6 +31,7 @@ import lombok.NoArgsConstructor;
 @Table (name = "customer")
 public class Customer implements UserDetails{
     
+    
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     @Column (name = "customer_id", nullable = false)
