@@ -402,7 +402,72 @@
 		},
 		{
 			"name": "CourseRequests",
-			"item": [],
+			"item": [
+				{
+					"name": "SaveCourse",
+					"id": "12181772-76b8-4acb-bcbb-d378b5f2dad8",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5ODMyOTU3OCwiZXhwIjoxNjk4MzQzOTc4fQ.Fa_bUPCKVJq_kpNmST5uxR1um2taCWdQ9K3YdwZ3ljg"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"courseName\": \"Yoga\",\n    \"courseCode\" : \"1\",\n    \"coursePrice\" : \"20.0\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/course/saveCourse"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCourse",
+					"id": "f0525552-b13d-4d16-8a52-e78a7ba3c954",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5ODMyNzYxNywiZXhwIjoxNjk4MzQyMDE3fQ.ub8sFs-dIqknI22PE8s-gbqINmCUPf8KTpInqIqJdSk"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/course/deleteCourse?courseCode=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"course",
+								"deleteCourse"
+							],
+							"query": [
+								{
+									"key": "courseCode",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
 			"id": "6744736e-66ec-4af5-8fc9-24d4b175a77e"
 		}
 	]
