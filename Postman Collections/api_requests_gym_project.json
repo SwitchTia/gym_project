@@ -432,6 +432,70 @@
 					"response": []
 				},
 				{
+					"name": "GetCourse",
+					"id": "248ae382-e10a-44df-aa51-50185425fa38",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJpYS5yb3NzaUBnbWFpbC5jb20iLCJpYXQiOjE2OTgzMjY2NzgsImV4cCI6MTY5ODM0MTA3OH0.JkYPWvyxz3H3rzAzKWyuquH3Lfk3PWvaLB3aFFpcS_k"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/course/getCourse?courseCode=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"course",
+								"getCourse"
+							],
+							"query": [
+								{
+									"key": "courseCode",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllCourses",
+					"id": "2433ece9-62bc-49fa-bb5a-09611c6a6243",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJpYS5yb3NzaUBnbWFpbC5jb20iLCJpYXQiOjE2OTgzMjY2NzgsImV4cCI6MTY5ODM0MTA3OH0.JkYPWvyxz3H3rzAzKWyuquH3Lfk3PWvaLB3aFFpcS_k"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/course/getAllCourses"
+					},
+					"response": []
+				},
+				{
 					"name": "DeleteCourse",
 					"id": "f0525552-b13d-4d16-8a52-e78a7ba3c954",
 					"protocolProfileBehavior": {
