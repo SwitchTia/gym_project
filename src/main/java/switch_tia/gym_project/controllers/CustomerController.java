@@ -38,8 +38,8 @@ public class CustomerController {
         try {
             return new ResponseEntity (cs.registerAdmin(regRequest), HttpStatus.OK);
         } catch (RuntimeException e) {
-            String ex = e.getClass().getSimpleName();
-            return new ResponseEntity(ex, HttpStatus.BAD_REQUEST);
+            String x = e.getClass().getSimpleName();
+            return new ResponseEntity(x, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -48,8 +48,8 @@ public class CustomerController {
         try {
             return new ResponseEntity (cs.registerInstructor(regRequest), HttpStatus.OK);
         } catch (RuntimeException e) {
-            String ex = e.getClass().getSimpleName();
-            return new ResponseEntity(ex, HttpStatus.BAD_REQUEST);
+            String x = e.getClass().getSimpleName();
+            return new ResponseEntity(x, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -58,8 +58,8 @@ public class CustomerController {
         try {
             return new ResponseEntity (cs.registerCustomer(regRequest), HttpStatus.OK);
         } catch (RuntimeException e) {
-            String ex = e.getClass().getSimpleName();
-            return new ResponseEntity(ex, HttpStatus.BAD_REQUEST);
+            String x = e.getClass().getSimpleName();
+            return new ResponseEntity(x, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -68,8 +68,8 @@ public class CustomerController {
         try {
             return new ResponseEntity (cs.authenticate(authRequest), HttpStatus.OK);
         } catch (RuntimeException e) {
-            String ex = e.getClass().getSimpleName();
-            return new ResponseEntity(ex, HttpStatus.BAD_REQUEST);
+            String x = e.getClass().getSimpleName();
+            return new ResponseEntity(x, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -79,8 +79,8 @@ public class CustomerController {
         try {
             return new ResponseEntity (cs.upgradeRole(email), HttpStatus.OK);
         } catch (RuntimeException e) {
-            String ex = e.getClass().getSimpleName();
-            return new ResponseEntity(ex, HttpStatus.BAD_REQUEST);
+            String x = e.getClass().getSimpleName();
+            return new ResponseEntity(x, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -90,8 +90,8 @@ public class CustomerController {
         try {
             return new ResponseEntity (cs.downgradeRole(email), HttpStatus.OK);
         } catch (RuntimeException e) {
-            String ex = e.getClass().getSimpleName();
-            return new ResponseEntity(ex, HttpStatus.BAD_REQUEST);
+            String x = e.getClass().getSimpleName();
+            return new ResponseEntity (x, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -107,8 +107,8 @@ public class CustomerController {
         try {
             return new ResponseEntity (cs.getCustomer (email), HttpStatus.OK);
         } catch (RuntimeException e) {
-            String ex = e.getClass().getSimpleName();
-            return new ResponseEntity (ex, HttpStatus.BAD_REQUEST);
+            String x = e.getClass().getSimpleName();
+            return new ResponseEntity (x, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -118,8 +118,8 @@ public class CustomerController {
         try {
             return new ResponseEntity (cs.modifyEmail (email, newEmail), HttpStatus.OK);
         } catch (RuntimeException e) {
-            String ex = e.getClass().getSimpleName();
-             return new ResponseEntity (ex, HttpStatus.BAD_REQUEST);
+            String x = e.getClass().getSimpleName();
+             return new ResponseEntity (x, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -130,8 +130,8 @@ public class CustomerController {
             String email =jwtService.extractEmailFromRequest(servletRequest);
             return new ResponseEntity (cs.modifyPassword (email, password, newPassword), HttpStatus.OK);
         } catch (RuntimeException e) {
-            String ex = e.getClass().getSimpleName();
-             return new ResponseEntity (ex, HttpStatus.BAD_REQUEST);
+            String x = e.getClass().getSimpleName();
+             return new ResponseEntity (x, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -141,8 +141,8 @@ public class CustomerController {
         try {
             return new ResponseEntity (cs.deleteCustomer(email), HttpStatus.OK);
         } catch (RuntimeException e) {
-            String ex = e.getClass().getSimpleName();
-            return new ResponseEntity (ex, HttpStatus.BAD_REQUEST);
+            String x = e.getClass().getSimpleName();
+            return new ResponseEntity (x, HttpStatus.BAD_REQUEST);
         }
     }
 

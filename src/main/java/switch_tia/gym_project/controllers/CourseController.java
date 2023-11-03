@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.config.Task;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,8 +33,8 @@ public class CourseController {
         try {
             return new ResponseEntity (cs.saveCourse (c), HttpStatus.OK);
         } catch (RuntimeException e) {
-            String ex = e.getClass().getSimpleName();
-            return new ResponseEntity (ex, HttpStatus.BAD_REQUEST);
+            String x = e.getClass().getSimpleName();
+            return new ResponseEntity (x, HttpStatus.BAD_REQUEST);
         }
     }
     
@@ -43,9 +44,25 @@ public class CourseController {
         try {
             return new ResponseEntity (cs.deleteCourse (courseCode), HttpStatus.OK);
         } catch (RuntimeException e) {
-            String ex = e.getClass().getSimpleName();
-            return new ResponseEntity (ex, HttpStatus.BAD_REQUEST);
+            String x = e.getClass().getSimpleName();
+            return new ResponseEntity (x, HttpStatus.BAD_REQUEST);
         }
     }
     
+    @GetMapping ("/getCourse")
+    @PreAuthorize ("hasAnyAuthority ('ADMIN','INSTRUCTOR')")
+    public ResponseEntity getCourse (@RequestParam ("courseCode") int courseCode){
+        try {
+            return new ResponseEntity (cs.getCourse(courseCode), HttpStatus.OK);
+        } catch (RuntimeException e) {
+           String x = e.getClass().getSimpleName();
+           return new ResponseEntity (x, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping ("/getAllCourses")
+    @PreAuthorize ("hasAnyAuthority ('ADMIN','INSTRUCTOR')")
+    public ResponseEntity getAllCourses () {
+        return new ResponseEntity (cr.findAll(), HttpStatus.OK);
+    }
 }

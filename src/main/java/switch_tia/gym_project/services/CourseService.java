@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import switch_tia.gym_project.UTILITIES.exceptions.CourseAlreadyExistsException;
+import switch_tia.gym_project.UTILITIES.exceptions.CourseDoesNotExistException;
 import switch_tia.gym_project.UTILITIES.exceptions.IncorrectDataException;
 import switch_tia.gym_project.entities.Course;
 import switch_tia.gym_project.repositories.CourseRepository;
@@ -30,5 +31,13 @@ public class CourseService {
         String x = "The course has been deleted";
         return x;
     }
+
+    public Course getCourse (int courseCode) throws RuntimeException {
+        Course c = cr.findByCourseCode(courseCode);
+        if (!cr.existsByCourseCode(courseCode)){
+            throw new CourseDoesNotExistException ();
+        }
+        return c;
+    } 
     
 }
