@@ -533,6 +533,228 @@
 				}
 			],
 			"id": "6744736e-66ec-4af5-8fc9-24d4b175a77e"
+		},
+		{
+			"name": "ProductRequests",
+			"item": [
+				{
+					"name": "SaveProduct",
+					"id": "637f7832-7c3a-4f92-9cfb-11998b343eca",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5NzQ3ODAzMCwiZXhwIjoxNjk3NDkyNDMwfQ.YDeL_mPS7heOwO-nFR1qvMfFhSyUkWZxuABDlVHFUcI"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"productName\": \"Creatine\",\r\n\"productCode\" : \"1\",\r\n\"productAvQnt\" : \"20\",\r\n\"productPrice\": \"9.99\",\r\n\"productType\": \"gym supplements\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/product/saveProduct"
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllProducts",
+					"id": "495c7d99-66d1-4613-a633-fc3271f4e2d2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5NzQ3NjkxNCwiZXhwIjoxNjk3NDkxMzE0fQ.QeTWMI7n-i4qrgM0huIOpd1KxVewHAQB9QFT5_-AWH0"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/product/getAllProducts"
+					},
+					"response": []
+				},
+				{
+					"name": "GetProduct",
+					"id": "3f3900da-7749-4b1c-b9df-b68f1ea3559b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5NzQ3MjQxOCwiZXhwIjoxNjk3NDg2ODE4fQ.XJaf3ADCKZL5TVBZaPCey72JmDvESDRq44mE3Wljqn8"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/product/getProduct?productCode=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"product",
+								"getProduct"
+							],
+							"query": [
+								{
+									"key": "productCode",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindByType",
+					"id": "0359a458-dd9a-4827-855a-026fbff093f6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5NzQ3MzY0MywiZXhwIjoxNjk3NDg4MDQzfQ.E6ew4kVB1XhjmnCHuUfrOwEvf45uEMPv2pikqXxrgsI"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/product/findByType?productType=fruits&pageNr=1&pageSize=1&sortDirection=desc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"product",
+								"findByType"
+							],
+							"query": [
+								{
+									"key": "productType",
+									"value": "fruits"
+								},
+								{
+									"key": "pageNr",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "1"
+								},
+								{
+									"key": "sortDirection",
+									"value": "desc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ModifyProductCode",
+					"id": "744e9410-9c49-4f1f-887d-7d18fea9ec3d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5NzQ3MjQxOCwiZXhwIjoxNjk3NDg2ODE4fQ.XJaf3ADCKZL5TVBZaPCey72JmDvESDRq44mE3Wljqn8"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/product/modifyProductCode?productCode=4&newProductCode=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"product",
+								"modifyProductCode"
+							],
+							"query": [
+								{
+									"key": "productCode",
+									"value": "4"
+								},
+								{
+									"key": "newProductCode",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteProduct",
+					"id": "6eeebaf4-1ad5-41e5-a76e-4f426ed60928",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJpYS5yb3NzaUBnbWFpbC5jb20iLCJpYXQiOjE2OTcwMjg3NzEsImV4cCI6MTY5NzA0MzE3MX0.I2c4bYMcIC_UDdtye7x5y3UgzOW0npaBs8M7iEF1QsE"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/product/deleteProduct?productCode=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"product",
+								"deleteProduct"
+							],
+							"query": [
+								{
+									"key": "productCode",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "7ae889f7-8ac8-4e07-9dc0-ad01578f8bd7"
 		}
 	]
 }
