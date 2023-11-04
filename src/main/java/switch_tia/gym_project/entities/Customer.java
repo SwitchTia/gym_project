@@ -49,6 +49,9 @@ public class Customer implements UserDetails{
     @Column (name = "password")
     private String password;
 
+    @Column (name = "purchased", nullable = false)
+    private boolean purchased;
+    
     @Enumerated  (EnumType.STRING) 
     private Role role;
 

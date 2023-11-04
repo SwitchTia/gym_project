@@ -1,22 +1,34 @@
 package switch_tia.gym_project.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.config.Task;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import switch_tia.gym_project.UTILITIES.configurations.AuthenticationRequest;
 import switch_tia.gym_project.UTILITIES.configurations.AuthenticationResponse;
 import switch_tia.gym_project.UTILITIES.configurations.RegisterRequest;
+import switch_tia.gym_project.UTILITIES.exceptions.CourseDoesNotExistException;
+import switch_tia.gym_project.UTILITIES.exceptions.CourseLimitExceededException;
 import switch_tia.gym_project.UTILITIES.exceptions.CustomerAlreadyExistsException;
 import switch_tia.gym_project.UTILITIES.exceptions.CustomerDoesNotExistException;
 import switch_tia.gym_project.UTILITIES.exceptions.CustomerHasAlreadyAdminRoleException;
 import switch_tia.gym_project.UTILITIES.exceptions.IncorrectDataException;
+import switch_tia.gym_project.UTILITIES.exceptions.IncorrectProductQuantityException;
+import switch_tia.gym_project.UTILITIES.exceptions.ProductDoesNotExistException;
+import switch_tia.gym_project.entities.ActiveCourse;
+import switch_tia.gym_project.entities.Course;
 import switch_tia.gym_project.entities.Customer;
+import switch_tia.gym_project.entities.Product;
 import switch_tia.gym_project.entities.Role;
+import switch_tia.gym_project.repositories.ActiveCourseRepository;
+import switch_tia.gym_project.repositories.CourseRepository;
 import switch_tia.gym_project.repositories.CustomerRepository;
+import switch_tia.gym_project.repositories.ProductRepository;
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +36,15 @@ public class CustomerService {
     
     @Autowired
     CustomerRepository cr;
+
+    @Autowired
+    ProductRepository pr;
+
+    @Autowired
+    CourseRepository courseRep;
+
+    @Autowired
+    ActiveCourseRepository acr;
 
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
@@ -169,6 +190,78 @@ public class CustomerService {
         cr.delete (c);
         String x = "The customer " + email + " has been deleted";
         return x;
+    }
+
+    public Customer activeCourse (String email, Integer courseCode) throws RuntimeException {
+        Customer c = cr.findByEmail(email);
+        Course course = courseRep.findByCourseCode(courseCode);
+        if (!isValidEmail(email)){
+            throw new IncorrectDataException();
+        }
+        if (c == null){
+            throw new CustomerDoesNotExistException();
+        }
+        if (course == null){
+            throw new CourseDoesNotExistException();
+        }
+        if (c.getActiveCourseList().size() >= 5)  {
+            throw new CourseLimitExceededException ();
+        }
+
+        ActiveCourse ac = new ActiveCourse();
+        ac.setAcName(course.getCourseName());
+        ac.setAcCode(course.getCourseCode());
+        ac.setAcPrice(course.getCoursePrice());
+        //ac.setU(u);
+        
+        ac = acr.save(ac);
+
+        c.getActiveCourseList().add(ac); 
+
+        return c = cr.save(c);
+    }
+
+    @Transactional
+    public Customer purchasedProd (String email, Integer productCode, int purchasedQnt) throws RuntimeException{
+        Customer c = cr.findByEmail(email);
+        Product p = pr.findByProductCode(productCode);
+        c.setPurchased(true);
+        c = cr.save(c);
+        
+        p = pr.findByProductCode(productCode);
+        if (cr == null){
+            throw new CustomerDoesNotExistException();
+        }
+        if (p == null){
+            throw new ProductDoesNotExistException();
+        }
+        if (p.getProductAvQnt() <= 0){
+                    throw new IncorrectProductQuantityException ();
+            }
+        if (p.getProductAvQnt() == purchasedQnt) {
+            p.setProductAvQnt(0);
+            p = pr.save (p);
+            c.getPurchasedList().add(p);
+        }
+        if (p.getProductAvQnt() > purchasedQnt) {
+            if (c.getPurchasedList().contains (p)) {
+                p.setProductAvQnt(p.getProductAvQnt() - purchasedQnt);
+                if (p.getProductAvQnt() < purchasedQnt){
+                        throw new IncorrectProductQuantityException ();
+                }
+                p = pr.save (p);
+                c.getPurchasedList().add(p);
+            }    
+            else {
+                p.setProductAvQnt(p.getProductAvQnt() - purchasedQnt);
+                if (p.getProductAvQnt() < purchasedQnt){
+                    throw new IncorrectProductQuantityException ();
+                }
+                p = pr.save(p);
+                c.getPurchasedList().add(p);
+            }
+        }
+        return c = cr.save(c);
     }
 
 }
