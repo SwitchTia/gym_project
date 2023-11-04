@@ -52,11 +52,15 @@ public class Customer implements UserDetails{
     @Enumerated  (EnumType.STRING) 
     private Role role;
 
-    //Relazione Utente e Corso
+    //Relationship Customer Course
     @ManyToMany
     @JoinColumn (name = "course_code")
     private List <Course> courseList = new ArrayList <> ();
 
+    //Relationship Customer Product
+    @ManyToMany
+    @JoinColumn (name = "product_code")
+    private List <Product> purchasedList = new ArrayList <> ();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
