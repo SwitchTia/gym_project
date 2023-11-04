@@ -145,6 +145,17 @@ public class CustomerController {
             return new ResponseEntity (x, HttpStatus.BAD_REQUEST);
         }
     }
+    @PostMapping ("/activeCourse")
+    @PreAuthorize ("hasAnyAuthority('ADMIN','INSTRUCTOR','CUSTOMER')")
+    public ResponseEntity activeCourse (HttpServletRequest servletRequest, @RequestParam ("courseCode") Integer courseCode) {
+        try {
+            String email =jwtService.extractEmailFromRequest(servletRequest);
+            return new ResponseEntity (cs.activeCourse(email, courseCode), HttpStatus.OK);
+        } catch (RuntimeException e) {
+            String ex = e.getClass().getSimpleName();
+            return new ResponseEntity (ex, HttpStatus.BAD_REQUEST);
+        }
+    }
 
     @GetMapping ("/purchasedProd")
     @PreAuthorize ("hasAnyAuthority('ADMIN','INSTRUCTOR','CUSTOMER')")

@@ -8,6 +8,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -17,6 +19,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -51,7 +54,7 @@ public class Customer implements UserDetails{
 
     @Column (name = "purchased", nullable = false)
     private boolean purchased;
-    
+
     @Enumerated  (EnumType.STRING) 
     private Role role;
 
@@ -60,6 +63,12 @@ public class Customer implements UserDetails{
     @JoinColumn (name = "course_code")
     private List <Course> courseList = new ArrayList <> ();
 
+    //Relationship Users and ActiveTask
+    @OneToMany
+    @JsonIgnore
+    @JoinColumn (name = "active_course")
+    private List <ActiveCourse> activeCourseList = new ArrayList <> ();
+    
     //Relationship Customer Product
     @ManyToMany
     @JoinColumn (name = "product_code")
