@@ -590,13 +590,13 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5ODMyNzYxNywiZXhwIjoxNjk4MzQyMDE3fQ.ub8sFs-dIqknI22PE8s-gbqINmCUPf8KTpInqIqJdSk"
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5OTIxNTIzNCwiZXhwIjoxNjk5MjI5NjM0fQ.7JT-GRMIkrH-M5wcfxuY7CCRxsd9IPBGFppc-8kTZ6c"
 							}
 						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/course/courseSortPage?pageNr=0&pageSize=3&sortDirection=asc",
+							"raw": "http://localhost:8080/course/courseSortPage?pageNr=1&pageSize=2&sortDirection=desc",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -609,15 +609,15 @@
 							"query": [
 								{
 									"key": "pageNr",
-									"value": "0"
+									"value": "1"
 								},
 								{
 									"key": "pageSize",
-									"value": "3"
+									"value": "2"
 								},
 								{
 									"key": "sortDirection",
-									"value": "asc"
+									"value": "desc"
 								}
 							]
 						}
