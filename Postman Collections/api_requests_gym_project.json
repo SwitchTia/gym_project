@@ -191,20 +191,20 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5OTIwOTk2NywiZXhwIjoxNjk5MjI0MzY3fQ.kmWFLZf-ahhxYGSV2G12uHMqIZxvo3rp3ERNsgy6mIw"
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5OTIxMTY3NCwiZXhwIjoxNjk5MjI2MDc0fQ.GqoG7UDYOcuBL9e6HYM63pJXaz7U4qvhpIlMiZMa0Zk"
 							}
 						},
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/customers/purchasedProd?email=marco.neri@gmail.com&productCode=1&purchasedQnt=5",
+							"raw": "http://localhost:8080/customer/purchasedProd?email=marco.neri@gmail.com&productCode=1&purchasedQnt=5",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"customers",
+								"customer",
 								"purchasedProd"
 							],
 							"query": [
