@@ -209,9 +209,10 @@ public class CustomerService {
         }
 
         ActiveCourse ac = new ActiveCourse();
-        ac.setAcName(course.getCourseName());
-        ac.setAcCode(course.getCourseCode());
-        ac.setAcPrice(course.getCoursePrice());
+        ac.setCouserName(course.getCourseName());
+        ac.setCourseCode(course.getCourseCode());
+        ac.setCoursePrice(course.getCoursePrice());
+        
         //ac.setU(u);
         
         ac = acr.save(ac);

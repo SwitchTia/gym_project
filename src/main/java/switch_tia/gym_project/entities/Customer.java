@@ -63,9 +63,8 @@ public class Customer implements UserDetails{
     @JoinColumn (name = "course_code")
     private List <Course> courseList = new ArrayList <> ();
 
-    //Relationship Users and ActiveTask
-    @OneToMany
-    @JsonIgnore
+    //Relationship Customer and ActiveCourse
+    @ManyToMany
     @JoinColumn (name = "active_course")
     private List <ActiveCourse> activeCourseList = new ArrayList <> ();
     
