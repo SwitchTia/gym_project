@@ -58,11 +58,6 @@ public class Customer implements UserDetails{
     @Enumerated  (EnumType.STRING) 
     private Role role;
 
-    //Relationship Customer Course
-    @ManyToMany
-    @JoinColumn (name = "course_code")
-    private List <Course> courseList = new ArrayList <> ();
-
     //Relationship Customer and ActiveCourse
     @ManyToMany
     @JoinColumn (name = "active_course")

@@ -192,6 +192,7 @@ public class CustomerService {
         return x;
     }
 
+    @Transactional
     public Customer activeCourse (String email, Integer courseCode) throws RuntimeException {
         Customer c = cr.findByEmail(email);
         Course course = courseRep.findByCourseCode(courseCode);
@@ -213,8 +214,6 @@ public class CustomerService {
         ac.setCourseCode(course.getCourseCode());
         ac.setCoursePrice(course.getCoursePrice());
         
-        //ac.setU(u);
-        
         ac = acr.save(ac);
 
         c.getActiveCourseList().add(ac); 
@@ -230,7 +229,7 @@ public class CustomerService {
         c = cr.save(c);
         
         p = pr.findByProductCode(productCode);
-        if (cr == null){
+        if (c == null){
             throw new CustomerDoesNotExistException();
         }
         if (p == null){
