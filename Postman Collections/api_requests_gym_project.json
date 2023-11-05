@@ -182,6 +182,50 @@
 					"response": []
 				},
 				{
+					"name": "PurchasedProd",
+					"id": "fb495b3c-7cf5-45ae-b2ed-893a5b796d55",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5OTIwOTk2NywiZXhwIjoxNjk5MjI0MzY3fQ.kmWFLZf-ahhxYGSV2G12uHMqIZxvo3rp3ERNsgy6mIw"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customers/purchasedProd?email=marco.neri@gmail.com&productCode=1&purchasedQnt=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers",
+								"purchasedProd"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "marco.neri@gmail.com"
+								},
+								{
+									"key": "productCode",
+									"value": "1"
+								},
+								{
+									"key": "purchasedQnt",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GetCustomer",
 					"id": "1fde672e-92c4-48d0-bd31-c377ad5a52ba",
 					"protocolProfileBehavior": {
@@ -242,50 +286,6 @@
 							}
 						},
 						"url": "http://localhost:8080/customer/getAllCustomer"
-					},
-					"response": []
-				},
-				{
-					"name": "PurchasedProd",
-					"id": "fb495b3c-7cf5-45ae-b2ed-893a5b796d55",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5OTIwOTk2NywiZXhwIjoxNjk5MjI0MzY3fQ.kmWFLZf-ahhxYGSV2G12uHMqIZxvo3rp3ERNsgy6mIw"
-							}
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/customers/purchasedProd?email=marco.neri@gmail.com&productCode=1&purchasedQnt=5",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"customers",
-								"purchasedProd"
-							],
-							"query": [
-								{
-									"key": "email",
-									"value": "marco.neri@gmail.com"
-								},
-								{
-									"key": "productCode",
-									"value": "1"
-								},
-								{
-									"key": "purchasedQnt",
-									"value": "5"
-								}
-							]
-						}
 					},
 					"response": []
 				},
