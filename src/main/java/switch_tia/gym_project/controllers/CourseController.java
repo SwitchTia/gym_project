@@ -1,8 +1,10 @@
 package switch_tia.gym_project.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.config.Task;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -63,5 +65,11 @@ public class CourseController {
     @PreAuthorize ("hasAnyAuthority ('ADMIN','INSTRUCTOR')")
     public ResponseEntity getAllCourses () {
         return new ResponseEntity (cr.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping ("/courseSortPage")
+    @PreAuthorize ("hasAnyAuthority ('ADMIN','INSTRUCTOR','CUSTOMER')")
+    public Page <Course> courseSortPage (@RequestParam ("pageNr") int pageNr, @RequestParam ("pageSize") int pageSize, @RequestParam ("sortDirection") String sortDirection){
+        return cs.courseSortPage (pageNr, pageSize, sortDirection);
     }
 }

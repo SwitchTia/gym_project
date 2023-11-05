@@ -1,8 +1,13 @@
 package switch_tia.gym_project.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.scheduling.config.Task;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
 import switch_tia.gym_project.UTILITIES.exceptions.CourseAlreadyExistsException;
 import switch_tia.gym_project.UTILITIES.exceptions.CourseDoesNotExistException;
 import switch_tia.gym_project.UTILITIES.exceptions.IncorrectDataException;
@@ -22,6 +27,7 @@ public class CourseService {
         return cr.save(c);
     }
 
+    @Transactional
     public String deleteCourse (int courseCode) throws RuntimeException {
         Course c = cr.findByCourseCode(courseCode);
         if (c == null) {
@@ -39,5 +45,16 @@ public class CourseService {
         }
         return c;
     } 
+
+    public Page <Course> courseSortPage (int pageNr, int pageSize, String sortDirection) {
+        Sort sort;
+        if ("desc".equalsIgnoreCase(sortDirection)) {
+            sort = Sort.by(Sort.Order.desc("courseCode"));
+        } else {
+            sort = Sort.by(Sort.Order.asc("courseCode"));
+        }
+        PageRequest pageReq = PageRequest.of(pageNr, pageSize, sort);
+        return cr.findAll(pageReq);
+    }
     
 }
