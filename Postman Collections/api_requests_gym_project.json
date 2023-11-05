@@ -581,6 +581,50 @@
 					"response": []
 				},
 				{
+					"name": "CourseSortPage",
+					"id": "07704adc-8b46-493f-a2b9-a6c2e4b5724d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5ODMyNzYxNywiZXhwIjoxNjk4MzQyMDE3fQ.ub8sFs-dIqknI22PE8s-gbqINmCUPf8KTpInqIqJdSk"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/course/courseSortPage?pageNr=0&pageSize=3&sortDirection=asc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"course",
+								"courseSortPage"
+							],
+							"query": [
+								{
+									"key": "pageNr",
+									"value": "0"
+								},
+								{
+									"key": "pageSize",
+									"value": "3"
+								},
+								{
+									"key": "sortDirection",
+									"value": "asc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "DeleteCourse",
 					"id": "f0525552-b13d-4d16-8a52-e78a7ba3c954",
 					"protocolProfileBehavior": {
