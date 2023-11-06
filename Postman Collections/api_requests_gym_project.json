@@ -182,7 +182,7 @@
 					"response": []
 				},
 				{
-					"name": "PurchaseProd",
+					"name": "AddProdToCart",
 					"id": "fb495b3c-7cf5-45ae-b2ed-893a5b796d55",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -191,13 +191,13 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5OTI4ODExMiwiZXhwIjoxNjk5MzAyNTEyfQ.cdX53H90RwA00kyDqXLWt43sgt4Rbcv9-jJJn448Sa8"
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5OTI5NTA4OSwiZXhwIjoxNjk5MzA5NDg5fQ.Sc_m3QFz1oDbPtjNlIybmErzxM7gq3gJUGxqHrWYRL0"
 							}
 						},
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/customer/purchaseProd?email=marco.neri@gmail.com&productCode=1&purchasedQnt=5",
+							"raw": "http://localhost:8080/customer/addProdToCart?email=marco.neri@gmail.com&productCode=1&purchasedQnt=5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -205,7 +205,7 @@
 							"port": "8080",
 							"path": [
 								"customer",
-								"purchaseProd"
+								"addProdToCart"
 							],
 							"query": [
 								{
