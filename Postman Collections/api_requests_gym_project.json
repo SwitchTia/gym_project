@@ -141,91 +141,6 @@
 					"response": []
 				},
 				{
-					"name": "ActivateCourse",
-					"id": "26f9977c-42b1-4d60-8eaa-a5a60fbc54f4",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5OTI4MDA5OCwiZXhwIjoxNjk5Mjk0NDk4fQ.rqKjDUgSOHOz4xMfuRL8apvbjZsNLxcwdznJuUV_IXI"
-							}
-						},
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/customer/activateCourse?courseCode=2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"customer",
-								"activateCourse"
-							],
-							"query": [
-								{
-									"key": "email",
-									"value": "maria.rossi@gmail.com",
-									"disabled": true
-								},
-								{
-									"key": "courseCode",
-									"value": "2"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "AddProdToCart",
-					"id": "fb495b3c-7cf5-45ae-b2ed-893a5b796d55",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5OTI5NTA4OSwiZXhwIjoxNjk5MzA5NDg5fQ.Sc_m3QFz1oDbPtjNlIybmErzxM7gq3gJUGxqHrWYRL0"
-							}
-						},
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/customer/addProdToCart?email=marco.neri@gmail.com&productCode=1&purchasedQnt=5",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"customer",
-								"addProdToCart"
-							],
-							"query": [
-								{
-									"key": "email",
-									"value": "marco.neri@gmail.com"
-								},
-								{
-									"key": "productCode",
-									"value": "1"
-								},
-								{
-									"key": "purchasedQnt",
-									"value": "5"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "GetCustomer",
 					"id": "1fde672e-92c4-48d0-bd31-c377ad5a52ba",
 					"protocolProfileBehavior": {
@@ -286,6 +201,91 @@
 							}
 						},
 						"url": "http://localhost:8080/customer/getAllCustomer"
+					},
+					"response": []
+				},
+				{
+					"name": "ActivateCourse",
+					"id": "26f9977c-42b1-4d60-8eaa-a5a60fbc54f4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5OTI4MDA5OCwiZXhwIjoxNjk5Mjk0NDk4fQ.rqKjDUgSOHOz4xMfuRL8apvbjZsNLxcwdznJuUV_IXI"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customer/activateCourse?courseCode=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer",
+								"activateCourse"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "maria.rossi@gmail.com",
+									"disabled": true
+								},
+								{
+									"key": "courseCode",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddProdToCart",
+					"id": "fb495b3c-7cf5-45ae-b2ed-893a5b796d55",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5OTI5NTA4OSwiZXhwIjoxNjk5MzA5NDg5fQ.Sc_m3QFz1oDbPtjNlIybmErzxM7gq3gJUGxqHrWYRL0"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customer/addProdToCart?email=marco.neri@gmail.com&productCode=1&purchasedQnt=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer",
+								"addProdToCart"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "marco.neri@gmail.com"
+								},
+								{
+									"key": "productCode",
+									"value": "1"
+								},
+								{
+									"key": "purchasedQnt",
+									"value": "5"
+								}
+							]
+						}
 					},
 					"response": []
 				},
