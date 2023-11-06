@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -37,8 +39,8 @@ public class Customer implements UserDetails{
     
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    @Column (name = "customer_id", nullable = false)
-    private int customerId;
+    @Column (name = "customerID", nullable = false)
+    private Integer customerID;
 
     @Column (name = "firstname")
     private String firstname;
@@ -49,7 +51,7 @@ public class Customer implements UserDetails{
     @Column (name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column (name = "password")
+    @Column (name = "password", nullable = false)
     private String password;
 
     @Column (name = "purchased", nullable = false)
@@ -66,7 +68,12 @@ public class Customer implements UserDetails{
     //Relationship Customer Product
     @ManyToMany
     @JoinColumn (name = "product_code")
-    private List <PurchasedProd> purchasedList = new ArrayList <> ();
+    private List <Product> purchasedList = new ArrayList <> ();
+
+    //Relationship Customer ProdInPurchase
+    @OneToMany
+    @JoinColumn (name = "cart")
+    private List<ProdInPurchase> cart = new ArrayList <> ();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

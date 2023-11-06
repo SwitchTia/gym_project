@@ -24,13 +24,13 @@ import switch_tia.gym_project.entities.ActiveCourse;
 import switch_tia.gym_project.entities.Course;
 import switch_tia.gym_project.entities.Customer;
 import switch_tia.gym_project.entities.Product;
-import switch_tia.gym_project.entities.PurchasedProd;
+import switch_tia.gym_project.entities.ProdInPurchase;
 import switch_tia.gym_project.entities.Role;
 import switch_tia.gym_project.repositories.ActiveCourseRepository;
 import switch_tia.gym_project.repositories.CourseRepository;
 import switch_tia.gym_project.repositories.CustomerRepository;
 import switch_tia.gym_project.repositories.ProductRepository;
-import switch_tia.gym_project.repositories.PurchasedProdRepository;
+import switch_tia.gym_project.repositories.ProdInPurchaseRepository;
 
 @Service
 @RequiredArgsConstructor
@@ -49,7 +49,7 @@ public class CustomerService {
     ActiveCourseRepository acr;
 
     @Autowired
-    PurchasedProdRepository ppr;
+    ProdInPurchaseRepository ppr;
 
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
@@ -227,13 +227,14 @@ public class CustomerService {
     }
 
     @Transactional
-    public Customer purchaseProd (String email, Integer productCode, int purchasedQnt) throws RuntimeException{
+    public Customer addProdToCart (String email, Integer productCode, int purchasedQnt) throws RuntimeException{
         Customer c = cr.findByEmail(email);
         Product p = pr.findByProductCode(productCode);
-        c.setPurchased(true);
+        ProdInPurchase pp = ppr.findByCAndP(c, p);
+        /*c.setPurchased(true);
         c = cr.save(c);
+        */
         
-        p = pr.findByProductCode(productCode);
         if (c == null){
             throw new CustomerDoesNotExistException();
         }
@@ -241,46 +242,25 @@ public class CustomerService {
             throw new ProductDoesNotExistException();
         }
         if (p.getProductAvQnt() <= 0){
-                    throw new IncorrectProductQuantityException ();
+            throw new IncorrectProductQuantityException ();
         }
-    
-        PurchasedProd pp = new PurchasedProd();
-        pp.setProductName(p.getProductName());
-        pp.setProductCode(p.getProductCode());
-        pp.setProductQnt(purchasedQnt);
-        pp.setProductAvQnt(p.getProductAvQnt() - purchasedQnt);
-        //controlli su la quantity
-        p.setProductAvQnt(p.getProductAvQnt() - purchasedQnt);
-        p = pr.save(p);
-
-        pp.setProductPrice(p.getProductPrice());
-        pp.setProductType(p.getProductType());
-
-        pp = ppr.save(pp);
-        c.getPurchasedList().add(pp);
-        /*if (p.getProductAvQnt() == purchasedQnt) {
-            p.setProductAvQnt(0);
-            p = pr.save (p);
-            c.getPurchasedList().add(p);
-        }
-        if (p.getProductAvQnt() > purchasedQnt) {
-            if (c.getPurchasedList().contains (p)) {
-                p.setProductAvQnt(p.getProductAvQnt() - purchasedQnt);
-                if (p.getProductAvQnt() < purchasedQnt){
-                        throw new IncorrectProductQuantityException ();
-                }
-                p = pr.save (p);
-                c.getPurchasedList().add(p);
-            }    
-            else {
-                p.setProductAvQnt(p.getProductAvQnt() - purchasedQnt);
-                if (p.getProductAvQnt() < purchasedQnt){
-                    throw new IncorrectProductQuantityException ();
-                }
-                p = pr.save(p);
-                c.getPurchasedList().add(p);
+        if (pp == null){
+            pp = new ProdInPurchase();
+            pp.setProductName(p.getProductName());
+            pp.setProductCode(p.getProductCode());
+            pp.setProductQnt(purchasedQnt);
+            pp.setProductAvQnt(p.getProductAvQnt() - purchasedQnt);
+            if (p.getProductAvQnt() < purchasedQnt){
+                throw new IncorrectProductQuantityException ();
             }
-        }*/
+            p.setProductAvQnt(p.getProductAvQnt() - purchasedQnt);
+            p = pr.save(p);
+            pp.setProductPrice(p.getProductPrice());
+            pp.setProductType(p.getProductType());
+
+            pp = ppr.save(pp);
+            c.getCart().add(pp);
+        }
         return c = cr.save(c);
     }
 

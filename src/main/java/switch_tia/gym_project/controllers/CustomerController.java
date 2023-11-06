@@ -157,11 +157,11 @@ public class CustomerController {
         }
     }
 
-    @PostMapping ("/purchaseProd")
+    @PostMapping ("/addProdToCart")
     @PreAuthorize ("hasAnyAuthority('ADMIN','INSTRUCTOR','CUSTOMER')")
-    public ResponseEntity purchaseProd(@RequestParam ("email") String email, @RequestParam ("productCode") Integer productCode, @RequestParam ("purchasedQnt")int purchasedQnt) {
+    public ResponseEntity addProdToCart (@RequestParam ("email") String email, @RequestParam ("productCode") Integer productCode, @RequestParam ("purchasedQnt")int purchasedQnt) {
         try {
-            return new ResponseEntity (cs.purchaseProd (email, productCode, purchasedQnt), HttpStatus.OK);
+            return new ResponseEntity (cs.addProdToCart (email, productCode, purchasedQnt), HttpStatus.OK);
         } catch (RuntimeException e) {
             String x = e.getClass().getSimpleName();
             return new ResponseEntity (x, HttpStatus.BAD_REQUEST);

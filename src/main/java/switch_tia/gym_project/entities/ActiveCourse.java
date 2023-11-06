@@ -24,8 +24,8 @@ public class ActiveCourse {
 
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    @Column (name = "id", nullable = false)
-    private int id;
+    @Column (name = "acID", nullable = false)
+    private Integer courseID;
 
     @Column (name = "ac_name")
     private String couserName;

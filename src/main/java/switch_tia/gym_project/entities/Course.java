@@ -20,8 +20,8 @@ public class Course {
 
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    @Column (name = "id", nullable = false)
-    private int id;
+    @Column (name = "courseID", nullable = false)
+    private Integer courseID;
 
     @Column (name = "courseName")
     private String courseName;
