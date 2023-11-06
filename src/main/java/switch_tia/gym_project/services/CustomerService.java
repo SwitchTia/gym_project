@@ -18,8 +18,9 @@ import switch_tia.gym_project.UTILITIES.exceptions.CustomerAlreadyExistsExceptio
 import switch_tia.gym_project.UTILITIES.exceptions.CustomerDoesNotExistException;
 import switch_tia.gym_project.UTILITIES.exceptions.CustomerHasAlreadyAdminRoleException;
 import switch_tia.gym_project.UTILITIES.exceptions.IncorrectDataException;
-import switch_tia.gym_project.UTILITIES.exceptions.IncorrectProductQuantityException;
+import switch_tia.gym_project.UTILITIES.exceptions.ProductQuantityExceededLimitException;
 import switch_tia.gym_project.UTILITIES.exceptions.ProductDoesNotExistException;
+import switch_tia.gym_project.UTILITIES.exceptions.ProductNotInTheCartException;
 import switch_tia.gym_project.entities.ActiveCourse;
 import switch_tia.gym_project.entities.Course;
 import switch_tia.gym_project.entities.Customer;
@@ -226,14 +227,97 @@ public class CustomerService {
         return c = cr.save(c);
     }
 
-    @Transactional
     public Customer addProdToCart (String email, Integer productCode, int purchasedQnt) throws RuntimeException{
         Customer c = cr.findByEmail(email);
+        Product p = pr.findByProductCode(productCode);
+        ProdInPurchase pp = ppr.findByCAndP (c, p);
+        if (!isValidEmail(email)){
+            throw new IncorrectDataException ();
+        }
+        if (c == null){
+            throw new CustomerDoesNotExistException();
+        }
+        if (p == null){
+            throw new ProductDoesNotExistException();
+        }
+        if (p.getProductAvQnt() < purchasedQnt){
+            throw new ProductQuantityExceededLimitException ();
+        }
+        if (pp != null) {
+            if (p.getProductAvQnt() > 0) {
+                if (c.getCart().contains (pp)) {
+                    pp.setProductQnt (pp.getProductQnt() + purchasedQnt);
+                    p.setProductAvQnt(p.getProductAvQnt() - purchasedQnt);
+                    pp = ppr.save (pp);
+                }    
+            }
+        }
+        pp = new ProdInPurchase (null, p.getProductName(), p.getProductCode(), purchasedQnt, p.getProductAvQnt(), p.getProductPrice(), p.getProductType(), p, c);
+        pp.setProductAvQnt(p.getProductAvQnt() - purchasedQnt);
+        p.setProductAvQnt(p.getProductAvQnt() - purchasedQnt);
+        pp = ppr.save (pp);
+        c.getCart().add(pp);
+        
+        return c = cr.save(c);
+    }
+
+    @Transactional
+    public Customer purchaseProd (String email, Integer productCode, int purchasedQnt) throws RuntimeException{
+        Customer c = cr.findByEmail(email);
+        Product p = pr.findByProductCode(productCode);
+        c.setPurchased(true);
+        c = cr.save(c);
+        if (!isValidEmail(email)){
+            throw new IncorrectDataException ();
+        }
+        if (c == null){
+            throw new CustomerDoesNotExistException();
+        }
+        if (p == null){
+            throw new ProductDoesNotExistException();
+        }
+        if (p.getProductAvQnt() <= 0){
+                    throw new ProductQuantityExceededLimitException ();
+            }
+        if (p.getProductAvQnt() >= purchasedQnt) {
+            if (c.getPurchasedList().contains (p)) {
+                p.setProductAvQnt(p.getProductAvQnt() - purchasedQnt);
+                p = pr.save (p);
+                c.getPurchasedList().add(p);
+            }    
+            p.setProductAvQnt(p.getProductAvQnt() - purchasedQnt);
+            p = pr.save(p);
+            c.getPurchasedList().add(p);
+        }
+        return c = cr.save(c);
+        
+    }
+        /*if (pp == null){
+            throw new ProductDoesNotExistException();
+        }
+        if (pp.getProductAvQnt() < purchasedQnt){
+            throw new ProductQuantityExceededLimitException ();
+        }
+        if (pp.getProductAvQnt() >= purchasedQnt) {
+            if (c.getCart().contains (pp)) {
+                p.setProductAvQnt(p.getProductAvQnt() - purchasedQnt);
+                pp.
+                p = pr.save (p);
+
+                c.getPurchasedList().add(p);
+            }    
+            p.setProductAvQnt(p.getProductAvQnt() - purchasedQnt);
+            p = pr.save(p);
+            c.getPurchasedList().add(p);
+            
+        }
+        return c = cr.save(c);*/
+        /*Customer c = cr.findByEmail(email);
         Product p = pr.findByProductCode(productCode);
         ProdInPurchase pp = ppr.findByCAndP(c, p);
         /*c.setPurchased(true);
         c = cr.save(c);
-        */
+        
         
         if (c == null){
             throw new CustomerDoesNotExistException();
@@ -260,8 +344,8 @@ public class CustomerService {
 
             pp = ppr.save(pp);
             c.getCart().add(pp);
-        }
+        }  
         return c = cr.save(c);
-    }
+    }*/
 
 }

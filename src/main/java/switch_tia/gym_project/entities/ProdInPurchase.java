@@ -36,7 +36,7 @@ public class ProdInPurchase {
     //@Column (name = "pp_qnt")
     private int productQnt;
 
-    //@Column (name = "product_avqnt")
+    //@Column (name = "pp_avqnt")
     private int productAvQnt;
 
    // @Column (name = "pp_price", nullable = false)

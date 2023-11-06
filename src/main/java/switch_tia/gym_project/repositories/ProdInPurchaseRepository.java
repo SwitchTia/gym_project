@@ -1,7 +1,5 @@
 package switch_tia.gym_project.repositories;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import switch_tia.gym_project.entities.Product;

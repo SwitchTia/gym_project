@@ -145,7 +145,7 @@ public class CustomerController {
             return new ResponseEntity (x, HttpStatus.BAD_REQUEST);
         }
     }
-    @PostMapping ("/activateCourse")
+    @PutMapping ("/activateCourse")
     @PreAuthorize ("hasAnyAuthority('ADMIN','INSTRUCTOR','CUSTOMER')")
     public ResponseEntity activateCourse (HttpServletRequest servletRequest, @RequestParam ("courseCode") Integer courseCode) {
         try {
@@ -157,7 +157,7 @@ public class CustomerController {
         }
     }
 
-    @PostMapping ("/addProdToCart")
+    @PutMapping ("/addProdToCart")
     @PreAuthorize ("hasAnyAuthority('ADMIN','INSTRUCTOR','CUSTOMER')")
     public ResponseEntity addProdToCart (@RequestParam ("email") String email, @RequestParam ("productCode") Integer productCode, @RequestParam ("purchasedQnt")int purchasedQnt) {
         try {
@@ -165,6 +165,18 @@ public class CustomerController {
         } catch (RuntimeException e) {
             String x = e.getClass().getSimpleName();
             return new ResponseEntity (x, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PutMapping ("/purchaseProd")
+    @PreAuthorize ("hasAnyAuthority('ADMIN','INSTRUCTOR','CUSTOMER')")
+    public ResponseEntity purchaseProd(HttpServletRequest servletRequest, @RequestParam ("productCode") Integer productCode, @RequestParam ("purchasedQnt")int purchasedQnt) {
+        try {
+            String email =jwtService.extractEmailFromRequest(servletRequest);
+            return new ResponseEntity (cs.purchaseProd (email, productCode, purchasedQnt), HttpStatus.OK);
+        } catch (RuntimeException e) {
+            String ex = e.getClass().getSimpleName();
+            return new ResponseEntity (ex, HttpStatus.BAD_REQUEST);
         }
     }
 
