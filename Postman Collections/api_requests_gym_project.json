@@ -290,6 +290,46 @@
 					"response": []
 				},
 				{
+					"name": "PurchaseProd",
+					"id": "8de15fef-8f51-440c-a60a-59a398167c39",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJpYS5yb3NzaUBnbWFpbC5jb20iLCJpYXQiOjE2OTc0NzgwMzQsImV4cCI6MTY5NzQ5MjQzNH0.5Uo4ZkFW8v0sp0ep32CWwAJIVUfMRMCa-fHYHj4QPyU"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customer/purchaseProd?productCode=1&productQnt=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer",
+								"purchaseProd"
+							],
+							"query": [
+								{
+									"key": "productCode",
+									"value": "1"
+								},
+								{
+									"key": "productQnt",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "ModifyEmail",
 					"id": "6af8b4f2-23a4-4163-b5ef-40cd632c8615",
 					"protocolProfileBehavior": {
