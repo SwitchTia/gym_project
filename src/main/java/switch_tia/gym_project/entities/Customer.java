@@ -66,7 +66,7 @@ public class Customer implements UserDetails{
     //Relationship Customer Product
     @ManyToMany
     @JoinColumn (name = "product_code")
-    private List <Product> purchasedList = new ArrayList <> ();
+    private List <PurchasedProd> purchasedList = new ArrayList <> ();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -24,11 +24,13 @@ import switch_tia.gym_project.entities.ActiveCourse;
 import switch_tia.gym_project.entities.Course;
 import switch_tia.gym_project.entities.Customer;
 import switch_tia.gym_project.entities.Product;
+import switch_tia.gym_project.entities.PurchasedProd;
 import switch_tia.gym_project.entities.Role;
 import switch_tia.gym_project.repositories.ActiveCourseRepository;
 import switch_tia.gym_project.repositories.CourseRepository;
 import switch_tia.gym_project.repositories.CustomerRepository;
 import switch_tia.gym_project.repositories.ProductRepository;
+import switch_tia.gym_project.repositories.PurchasedProdRepository;
 
 @Service
 @RequiredArgsConstructor
@@ -45,6 +47,9 @@ public class CustomerService {
 
     @Autowired
     ActiveCourseRepository acr;
+
+    @Autowired
+    PurchasedProdRepository ppr;
 
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
@@ -193,7 +198,7 @@ public class CustomerService {
     }
 
     @Transactional
-    public Customer activeCourse (String email, Integer courseCode) throws RuntimeException {
+    public Customer activateCourse (String email, Integer courseCode) throws RuntimeException {
         Customer c = cr.findByEmail(email);
         Course course = courseRep.findByCourseCode(courseCode);
         if (!isValidEmail(email)){
@@ -222,7 +227,7 @@ public class CustomerService {
     }
 
     @Transactional
-    public Customer purchasedProd (String email, Integer productCode, int purchasedQnt) throws RuntimeException{
+    public Customer purchaseProd (String email, Integer productCode, int purchasedQnt) throws RuntimeException{
         Customer c = cr.findByEmail(email);
         Product p = pr.findByProductCode(productCode);
         c.setPurchased(true);
@@ -237,8 +242,23 @@ public class CustomerService {
         }
         if (p.getProductAvQnt() <= 0){
                     throw new IncorrectProductQuantityException ();
-            }
-        if (p.getProductAvQnt() == purchasedQnt) {
+        }
+    
+        PurchasedProd pp = new PurchasedProd();
+        pp.setProductName(p.getProductName());
+        pp.setProductCode(p.getProductCode());
+        pp.setProductQnt(purchasedQnt);
+        pp.setProductAvQnt(p.getProductAvQnt() - purchasedQnt);
+        //controlli su la quantity
+        p.setProductAvQnt(p.getProductAvQnt() - purchasedQnt);
+        p = pr.save(p);
+
+        pp.setProductPrice(p.getProductPrice());
+        pp.setProductType(p.getProductType());
+
+        pp = ppr.save(pp);
+        c.getPurchasedList().add(pp);
+        /*if (p.getProductAvQnt() == purchasedQnt) {
             p.setProductAvQnt(0);
             p = pr.save (p);
             c.getPurchasedList().add(p);
@@ -260,7 +280,7 @@ public class CustomerService {
                 p = pr.save(p);
                 c.getPurchasedList().add(p);
             }
-        }
+        }*/
         return c = cr.save(c);
     }
 
