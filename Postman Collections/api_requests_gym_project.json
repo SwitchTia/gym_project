@@ -299,13 +299,13 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJpYS5yb3NzaUBnbWFpbC5jb20iLCJpYXQiOjE2OTc0NzgwMzQsImV4cCI6MTY5NzQ5MjQzNH0.5Uo4ZkFW8v0sp0ep32CWwAJIVUfMRMCa-fHYHj4QPyU"
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5OTMxMDQ0MywiZXhwIjoxNjk5MzI0ODQzfQ.ym5pFUqMs7mUVEXxn8FQA6psO5NELQGoFC_u_GDfF7o"
 							}
 						},
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/customer/purchaseProd?productCode=1&productQnt=5",
+							"raw": "http://localhost:8080/customer/purchaseProd?productCode=1&purchasedQnt=5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -321,7 +321,7 @@
 									"value": "1"
 								},
 								{
-									"key": "productQnt",
+									"key": "purchasedQnt",
 									"value": "5"
 								}
 							]
