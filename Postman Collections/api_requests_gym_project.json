@@ -153,7 +153,7 @@
 								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5OTI4MDA5OCwiZXhwIjoxNjk5Mjk0NDk4fQ.rqKjDUgSOHOz4xMfuRL8apvbjZsNLxcwdznJuUV_IXI"
 							}
 						},
-						"method": "POST",
+						"method": "PUT",
 						"header": [],
 						"url": {
 							"raw": "http://localhost:8080/customer/activateCourse?courseCode=2",
