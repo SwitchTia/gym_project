@@ -141,7 +141,7 @@
 					"response": []
 				},
 				{
-					"name": "ActiveCourse",
+					"name": "ActivateCourse",
 					"id": "26f9977c-42b1-4d60-8eaa-a5a60fbc54f4",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -150,13 +150,13 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5ODMyOTU3OCwiZXhwIjoxNjk4MzQzOTc4fQ.Fa_bUPCKVJq_kpNmST5uxR1um2taCWdQ9K3YdwZ3ljg"
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5OTI4MDA5OCwiZXhwIjoxNjk5Mjk0NDk4fQ.rqKjDUgSOHOz4xMfuRL8apvbjZsNLxcwdznJuUV_IXI"
 							}
 						},
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/customer/activeCourse?courseCode=1",
+							"raw": "http://localhost:8080/customer/activateCourse?courseCode=2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -164,7 +164,7 @@
 							"port": "8080",
 							"path": [
 								"customer",
-								"activeCourse"
+								"activateCourse"
 							],
 							"query": [
 								{
@@ -174,7 +174,7 @@
 								},
 								{
 									"key": "courseCode",
-									"value": "1"
+									"value": "2"
 								}
 							]
 						}
@@ -182,7 +182,7 @@
 					"response": []
 				},
 				{
-					"name": "PurchasedProd",
+					"name": "PurchaseProd",
 					"id": "fb495b3c-7cf5-45ae-b2ed-893a5b796d55",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -191,7 +191,7 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5OTIxMTY3NCwiZXhwIjoxNjk5MjI2MDc0fQ.GqoG7UDYOcuBL9e6HYM63pJXaz7U4qvhpIlMiZMa0Zk"
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5OTI4MDA5OCwiZXhwIjoxNjk5Mjk0NDk4fQ.rqKjDUgSOHOz4xMfuRL8apvbjZsNLxcwdznJuUV_IXI"
 							}
 						},
 						"method": "POST",
