@@ -290,7 +290,7 @@
 					"response": []
 				},
 				{
-					"name": "PurchaseProd",
+					"name": "BuyProduct",
 					"id": "8de15fef-8f51-440c-a60a-59a398167c39",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -299,13 +299,13 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5OTMxMDQ0MywiZXhwIjoxNjk5MzI0ODQzfQ.ym5pFUqMs7mUVEXxn8FQA6psO5NELQGoFC_u_GDfF7o"
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJjby5uZXJpQGdtYWlsLmNvbSIsImlhdCI6MTY5OTM1ODk5NSwiZXhwIjoxNjk5MzczMzk1fQ.iHPXYKX6NMTMDtZZJVaQ0KbQTv_95lg0qM2Vw0cXLMA"
 							}
 						},
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/customer/purchaseProd?productCode=1&purchasedQnt=5",
+							"raw": "http://localhost:8080/customer/buyProduct?productCode=1&purchasedQnt=5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -313,7 +313,7 @@
 							"port": "8080",
 							"path": [
 								"customer",
-								"purchaseProd"
+								"buyProduct"
 							],
 							"query": [
 								{
