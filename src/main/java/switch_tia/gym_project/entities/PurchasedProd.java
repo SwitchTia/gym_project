@@ -1,5 +1,8 @@
 package switch_tia.gym_project.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -9,6 +12,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 import lombok.AllArgsConstructor;
@@ -19,46 +24,43 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table (name = "purchased_prod")
-public class ProdInPurchase {
+@Table (name = "purchasedProd")
+public class PurchasedProd {
 
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    @Column (name = "ppID", nullable = false)
+    @Column (name = "productID", nullable = false)
     private Integer productID;
 
-    //@Column (name = "pp_name")
+    //@Column (name = "prod_name")
     private String productName;
 
-    //@Column (name = "pp_code", nullable = false, unique = true)
+    //@Column (name = "product_code", nullable = false, unique = true)
     private int productCode;
 
-    //@Column (name = "pp_qnt")
+    //@Column (name = "product_qnt")
     private int productQnt;
 
-    //@Column (name = "pp_avqnt")
-    private int productAvQnt;
-
-   // @Column (name = "pp_price", nullable = false)
+    //@Column (name = "product_price", nullable = false)
     private double productPrice;
 
-    //@Column (name = "pp_type")
+    //@Column (name = "product_type")
     private String productType;
 
-    //@Version
-    //@Column (name = "pp_version")
-    //private Long productVersion;
+    private double purchasedAmount;
 
-    //Relationship ProdInPurchase and Product
-    @ManyToOne
+    //Relationship PurchasedProd and ProdInPurchase
     @JsonIgnore
-    @JoinColumn(name = "productID")
-    private Product p;
+    @OneToOne
+    @JoinColumn (name = "productID")
+    private ProdInCart prodInCart;
 
-    //Relationship ProdInPurchase and Customer
-    @ManyToOne
+
+    //Relationship PurchasedProd and Customer
     @JsonIgnore
+    @ManyToOne
     @JoinColumn(name = "customerID")
     private Customer c;
     
 }
+

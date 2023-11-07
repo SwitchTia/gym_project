@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import switch_tia.gym_project.UTILITIES.configurations.AuthenticationRequest;
 import switch_tia.gym_project.UTILITIES.configurations.AuthenticationResponse;
 import switch_tia.gym_project.UTILITIES.configurations.RegisterRequest;
+import switch_tia.gym_project.UTILITIES.exceptions.CardBalanceNotEnoughException;
 import switch_tia.gym_project.UTILITIES.exceptions.CourseDoesNotExistException;
 import switch_tia.gym_project.UTILITIES.exceptions.CourseLimitExceededException;
 import switch_tia.gym_project.UTILITIES.exceptions.CustomerAlreadyExistsException;
@@ -25,13 +26,15 @@ import switch_tia.gym_project.entities.ActiveCourse;
 import switch_tia.gym_project.entities.Course;
 import switch_tia.gym_project.entities.Customer;
 import switch_tia.gym_project.entities.Product;
-import switch_tia.gym_project.entities.ProdInPurchase;
+import switch_tia.gym_project.entities.PurchasedProd;
+import switch_tia.gym_project.entities.ProdInCart;
 import switch_tia.gym_project.entities.Role;
 import switch_tia.gym_project.repositories.ActiveCourseRepository;
 import switch_tia.gym_project.repositories.CourseRepository;
 import switch_tia.gym_project.repositories.CustomerRepository;
 import switch_tia.gym_project.repositories.ProductRepository;
-import switch_tia.gym_project.repositories.ProdInPurchaseRepository;
+import switch_tia.gym_project.repositories.PurchasedProdRepository;
+import switch_tia.gym_project.repositories.ProdInCartRepository;
 
 @Service
 @RequiredArgsConstructor
@@ -50,7 +53,10 @@ public class CustomerService {
     ActiveCourseRepository acr;
 
     @Autowired
-    ProdInPurchaseRepository ppr;
+    ProdInCartRepository prodIncartRep;
+
+    @Autowired
+    PurchasedProdRepository ppr;
 
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
@@ -230,7 +236,7 @@ public class CustomerService {
     public Customer addProdToCart (String email, Integer productCode, int purchasedQnt) throws RuntimeException{
         Customer c = cr.findByEmail(email);
         Product p = pr.findByProductCode(productCode);
-        ProdInPurchase pp = ppr.findByCAndP (c, p);
+        ProdInCart prodInCart = prodIncartRep.findByCAndP(c, p);
         if (!isValidEmail(email)){
             throw new IncorrectDataException ();
         }
@@ -243,28 +249,32 @@ public class CustomerService {
         if (p.getProductAvQnt() < purchasedQnt){
             throw new ProductQuantityExceededLimitException ();
         }
-        if (pp != null) {
+        if (prodInCart != null) {
             if (p.getProductAvQnt() > 0) {
-                if (c.getCart().contains (pp)) {
-                    pp.setProductQnt (pp.getProductQnt() + purchasedQnt);
+                if (c.getCart().contains (prodInCart)) {
+                    prodInCart.setProductQnt (prodInCart.getProductQnt() + purchasedQnt);
                     p.setProductAvQnt(p.getProductAvQnt() - purchasedQnt);
-                    pp = ppr.save (pp);
+                    prodInCart = prodIncartRep.save (prodInCart);
                 }    
             }
         }
-        pp = new ProdInPurchase (null, p.getProductName(), p.getProductCode(), purchasedQnt, p.getProductAvQnt(), p.getProductPrice(), p.getProductType(), p, c);
-        pp.setProductAvQnt(p.getProductAvQnt() - purchasedQnt);
+        prodInCart = new ProdInCart(null, p.getProductName(), p.getProductCode(), purchasedQnt, p.getProductAvQnt(), p.getProductPrice(), p.getProductType(), p, c);
+        prodInCart.setProductAvQnt(p.getProductAvQnt() - purchasedQnt);
         p.setProductAvQnt(p.getProductAvQnt() - purchasedQnt);
-        pp = ppr.save (pp);
-        c.getCart().add(pp);
-        
+        prodInCart = prodIncartRep.save (prodInCart);
+        c.getCart().add(prodInCart);
+         
         return c = cr.save(c);
     }
 
     @Transactional
-    public Customer purchaseProd (String email, Integer productCode, int purchasedQnt) throws RuntimeException{
+    public Customer buyProduct (String email, Integer productCode, int purchasedQnt) throws RuntimeException{
         Customer c = cr.findByEmail(email);
         Product p = pr.findByProductCode(productCode);
+        ProdInCart prodInCart = prodIncartRep.findByCAndP (c, p);
+        PurchasedProd pp = ppr.findByCAndProdInCart(c, prodInCart);
+        double totalPurchased;
+
         c.setPurchased(true);
         c = cr.save(c);
         if (!isValidEmail(email)){
@@ -276,76 +286,30 @@ public class CustomerService {
         if (p == null){
             throw new ProductDoesNotExistException();
         }
-        if (p.getProductAvQnt() <= 0){
-                    throw new ProductQuantityExceededLimitException ();
-            }
-        if (p.getProductAvQnt() >= purchasedQnt) {
-            if (c.getPurchasedList().contains (p)) {
-                p.setProductAvQnt(p.getProductAvQnt() - purchasedQnt);
-                p = pr.save (p);
-                c.getPurchasedList().add(p);
-            }    
-            p.setProductAvQnt(p.getProductAvQnt() - purchasedQnt);
-            p = pr.save(p);
-            c.getPurchasedList().add(p);
+        if(!(c.getCart().contains(prodInCart))){
+            throw new ProductNotInTheCartException ();
         }
-        return c = cr.save(c);
-        
-    }
-        /*if (pp == null){
-            throw new ProductDoesNotExistException();
+        if ((prodInCart.getProductPrice() * purchasedQnt) > c.getCardBalance()) {
+            throw new CardBalanceNotEnoughException ();
         }
-        if (pp.getProductAvQnt() < purchasedQnt){
-            throw new ProductQuantityExceededLimitException ();
+        if (!((purchasedQnt <= prodInCart.getProductQnt()) && prodInCart.getProductQnt() <= p.getProductAvQnt())) {
+            throw new ProductQuantityExceededLimitException();
         }
-        if (pp.getProductAvQnt() >= purchasedQnt) {
-            if (c.getCart().contains (pp)) {
-                p.setProductAvQnt(p.getProductAvQnt() - purchasedQnt);
-                pp.
-                p = pr.save (p);
+        prodInCart.setProductQnt(prodInCart.getProductQnt() - purchasedQnt);
 
-                c.getPurchasedList().add(p);
-            }    
-            p.setProductAvQnt(p.getProductAvQnt() - purchasedQnt);
-            p = pr.save(p);
-            c.getPurchasedList().add(p);
+        p.setProductAvQnt(p.getProductAvQnt() - purchasedQnt);
             
-        }
-        return c = cr.save(c);*/
-        /*Customer c = cr.findByEmail(email);
-        Product p = pr.findByProductCode(productCode);
-        ProdInPurchase pp = ppr.findByCAndP(c, p);
-        /*c.setPurchased(true);
-        c = cr.save(c);
-        
-        
-        if (c == null){
-            throw new CustomerDoesNotExistException();
-        }
-        if (p == null){
-            throw new ProductDoesNotExistException();
-        }
-        if (p.getProductAvQnt() <= 0){
-            throw new IncorrectProductQuantityException ();
-        }
-        if (pp == null){
-            pp = new ProdInPurchase();
-            pp.setProductName(p.getProductName());
-            pp.setProductCode(p.getProductCode());
-            pp.setProductQnt(purchasedQnt);
-            pp.setProductAvQnt(p.getProductAvQnt() - purchasedQnt);
-            if (p.getProductAvQnt() < purchasedQnt){
-                throw new IncorrectProductQuantityException ();
-            }
-            p.setProductAvQnt(p.getProductAvQnt() - purchasedQnt);
-            p = pr.save(p);
-            pp.setProductPrice(p.getProductPrice());
-            pp.setProductType(p.getProductType());
+        totalPurchased = prodInCart.getProductPrice() * purchasedQnt;
+        c.setCardBalance(c.getCardBalance() - totalPurchased);
 
-            pp = ppr.save(pp);
-            c.getCart().add(pp);
-        }  
+        if (prodInCart.getProductQnt() == 0) {
+            pp = new PurchasedProd(null, prodInCart.getProductName(), prodInCart.getProductCode(), purchasedQnt, prodInCart.getProductPrice(), prodInCart.getProductType(), totalPurchased, prodInCart, c);
+            ppr.save(pp);
+            pr.save(p);
+            c.getPurchasedList().add(pp);
+            c.getCart().remove(prodInCart);
+        }
         return c = cr.save(c);
-    }*/
+    }
 
 }

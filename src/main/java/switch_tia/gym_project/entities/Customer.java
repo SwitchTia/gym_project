@@ -60,20 +60,28 @@ public class Customer implements UserDetails{
     @Enumerated  (EnumType.STRING) 
     private Role role;
 
+    @Column(name="cardBalance")
+    private double cardBalance = 200.0;
+
     //Relationship Customer and ActiveCourse
     @ManyToMany
     @JoinColumn (name = "active_course")
     private List <ActiveCourse> activeCourseList = new ArrayList <> ();
     
     //Relationship Customer Product
-    @ManyToMany
-    @JoinColumn (name = "product_code")
-    private List <Product> purchasedList = new ArrayList <> ();
+    //@ManyToMany
+    //@JoinColumn (name = "product_code")
+    //private List <Product> purchasedList = new ArrayList <> ();
 
     //Relationship Customer ProdInPurchase
     @OneToMany
     @JoinColumn (name = "cart")
-    private List<ProdInPurchase> cart = new ArrayList <> ();
+    private List<ProdInCart> cart = new ArrayList <> ();
+
+    //Relationship Customer PurchasedProd
+    @OneToMany
+    @JoinColumn (name = "purchasedList")
+    private List <PurchasedProd> purchasedList = new ArrayList <> ();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

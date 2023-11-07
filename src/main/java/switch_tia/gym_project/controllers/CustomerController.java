@@ -168,12 +168,12 @@ public class CustomerController {
         }
     }
 
-    @PutMapping ("/purchaseProd")
+    @PutMapping ("/buyProduct")
     @PreAuthorize ("hasAnyAuthority('ADMIN','INSTRUCTOR','CUSTOMER')")
-    public ResponseEntity purchaseProd(HttpServletRequest servletRequest, @RequestParam ("productCode") Integer productCode, @RequestParam ("purchasedQnt")int purchasedQnt) {
+    public ResponseEntity buyProduct(HttpServletRequest servletRequest, @RequestParam ("productCode") Integer productCode, @RequestParam ("purchasedQnt")int purchasedQnt) {
         try {
             String email =jwtService.extractEmailFromRequest(servletRequest);
-            return new ResponseEntity (cs.purchaseProd (email, productCode, purchasedQnt), HttpStatus.OK);
+            return new ResponseEntity (cs.buyProduct (email, productCode, purchasedQnt), HttpStatus.OK);
         } catch (RuntimeException e) {
             String ex = e.getClass().getSimpleName();
             return new ResponseEntity (ex, HttpStatus.BAD_REQUEST);
